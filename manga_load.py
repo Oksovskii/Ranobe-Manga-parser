@@ -6,19 +6,19 @@ import time
 
 def parse_links():
     driver = webdriver.Firefox()
-    driver.get("https://jaomix.ru/category/tri-zhizni-smert-ne-u-reki-zabveniya/") #link on manga/ranobe on jaomix.ru for example "https://jaomix.ru/lenivyj-mechnik/""
+    driver.get("https://jaomix.ru/category/dikaya-gotovka/") #link on manga/ranobe on jaomix.ru for example "https://jaomix.ru/lenivyj-mechnik/""
     try:
         data = ''
         select = Select(driver.find_element_by_xpath("(//select[@class='sel-toc new-ajax-load'])"))
         for element in select.options:
             element.click()
-        time.sleep(0.1) #Delay for safety
+            time.sleep(0.1) #Delay for safety
 
-        visibletab = driver.find_element_by_xpath('//div[@class="hiddenstab active"]')
+            visibletab = driver.find_element_by_xpath('//div[@class="hiddenstab active"]')
 
-        soup = BeautifulSoup(visibletab.get_attribute('innerHTML'))
-        for a in soup.find_all('a', href=True):
-            data+=str('https://jaomix.ru'+a['href']+'\n')
+            soup = BeautifulSoup(visibletab.get_attribute('innerHTML'))
+            for a in soup.find_all('a', href=True):
+                data+=str('https://jaomix.ru'+a['href']+'\n')
 
         links = open("links.txt","w",encoding='utf8') #File with links
         links.write(data)
