@@ -4,9 +4,6 @@ from bs4 import BeautifulSoup
 import requests
 import time
 from progress.bar import IncrementalBar
-import warnings
-
-warnings.filterwarnings("ignore", category=UserWarning, module='bs4')
 
 def parse_links():
     print("Инициализация вебдрайвера...")
